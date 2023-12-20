@@ -1,12 +1,19 @@
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom"
 
 export default function Header({
-    heading,
-    paragraph,
-    linkName,
-    marginTop,
-    linkUrl="#"
-}){
+        heading,
+        paragraph,
+        linkName,
+        linkUrl,
+        marginTop
+    }:{
+        heading: string,
+        paragraph: string,
+        linkName: string,
+        linkUrl: string,
+        marginTop: string
+    }
+){
     return(
         <div className={'mb-10 '.concat(marginTop)}>
             <div className="flex justify-center">

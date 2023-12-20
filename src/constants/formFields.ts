@@ -1,4 +1,4 @@
-const loginFields=[
+const loginFields = [
     {
         labelText:"Username",
         labelFor:"username",
@@ -19,21 +19,7 @@ const loginFields=[
     }
 ]
 
-const temp = {
-    "username": "a.reinarz",
-    "first_name": "Anne",
-    "last_name": "Reinarz",
-    "email": "a.reinarz@collabed.org",
-    "password": "password1234",
-    "phone": "07124511124",
-    "institution": {
-        "id": "65819242c60ffe01ea10e6de"
-    },
-    "has_consent_for_data_sharing": true,
-    "has_agreed_terms": true
-}
-
-const signupFields=[
+const signupFields = [
     {
         labelText:"Username",
         labelFor:"username",

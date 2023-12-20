@@ -1,7 +1,6 @@
-import React from "react";
 import {useNavigate} from 'react-router-dom';
 
-const Root = ({routes}) => {
+const Root = () => {
     const navigate = useNavigate();
     return (
     <div 

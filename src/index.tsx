@@ -2,13 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Root from './pages/Root.jsx';
-import ErrorPage from './pages/util/Error.jsx';
-import LoginPage from './pages/auth/LoginPage.jsx';
-import RegisterPage from './pages/auth/RegisterPage.jsx';
+import Root from './pages/Root.tsx';
+import ErrorPage from './pages/util/Error.tsx';
+import LoginPage from './pages/auth/LoginPage.tsx';
+import RegisterPage from './pages/auth/RegisterPage.tsx';
 import { Provider } from 'react-redux';
-import store from './store/store.js';
-import Home from './pages/Home.jsx';
+import store from './store/store.ts';
+import Home from './pages/Home.tsx';
 
 const router = createBrowserRouter([
   {
@@ -21,11 +21,11 @@ const router = createBrowserRouter([
     element: <LoginPage />,
     errorElement: <ErrorPage />,
   },
-  {
-    path: "/register",
-    element: <RegisterPage />,
-    errorElement: <ErrorPage />,
-  },
+  // {
+  //   path: "/register",
+  //   element: <RegisterPage />,
+  //   errorElement: <ErrorPage />,
+  // },
   {
     path: "/home",
     element: <Home />,
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
   },
 ])
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router}/>
