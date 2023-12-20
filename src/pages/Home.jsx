@@ -1,22 +1,26 @@
-import React from "react";
-import {useNavigate} from 'react-router-dom';
+import React, { useEffect } from "react";
+import { selectToken } from "../store/features/auth/auth";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const Home = ({routes}) => {
-    const navigate = useNavigate();
+const Home = () => {
+    const navigate = useNavigate()
+    const token = useSelector(selectToken)
+
+    useEffect(() => {
+        if (! token) {
+            navigate("/login")
+        }
+    },[token])
+
     return (
-    <div 
-        className="flex flex-col h-screen w-screen bg-black bg-opacity-90 text-slate-200 text-center align-center"
-        onClick={() => navigate('/login')}
-    >
-        <div className="m-auto">
-            <div className="text-6xl font-bold font-sans">
-                Welcome to CollabEd!
+    <>
+        <div className="flex w-full h-full bg-red-300 items-center">
+            <div className="text-6xl m-auto">
+                Hello, from home page!
             </div>
-            <p className="text-slate-400">
-                Collaborative, insightful networking with your peers. Click anywhere to get started.
-            </p>
         </div>
-    </div>
+    </>
     )
 }
 

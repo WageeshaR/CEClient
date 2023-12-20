@@ -41,3 +41,4 @@ export const authSlice = createSlice({
 
 export const { loginReducer, logoutReducer, signUpReducer } = authSlice.actions
 export default authSlice.reducer
+export const selectToken = state => state.auth.data.token

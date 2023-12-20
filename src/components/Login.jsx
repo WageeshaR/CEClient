@@ -15,13 +15,14 @@ export default function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [fieldState, setFieldState] = useState(initialFieldsState)
-    const token = useSelector(state => state.auth.token)
+    const token = useSelector(state => state.auth.data.token)
 
     useEffect(() => {
+        console.log("Token value: ", token)
         if (token) {
             navigate("/home")
         }
-    }, [])
+    }, [token])
 
     const handleChange = (e) => {
         setFieldState({...fieldState, [e.target.id]:e.target.value})

@@ -15,16 +15,13 @@ export const authenticate = async (username, password) => {
             "username": username,
             "password": password
         }),
-        {headers: headers}
+        { headers: headers }
     )
 }
 
-export const getAllUsers = () => {
-    axios.get(baseUrl + "/users")
-    .then(function (response) {
-        return true
-    })
-    .catch(function (error) {
-        return false
-    })
+export const getAllUsers = async (token) => {
+    return axios.get(
+        baseUrl + "/users",
+        { headers: {...headers, 'Authorization': token } }
+    )
 }
