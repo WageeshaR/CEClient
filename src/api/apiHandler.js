@@ -4,19 +4,13 @@ import axios from 'axios';
 const baseUrl = "http://localhost:8080";
 
 export const authenticate = async (username, password) => {
-    axios.post(
+    return axios.post(
         baseUrl + "/login",
         {
             "username": username,
             "password": password
         }
-    ).
-    then(function (response) {
-        return true
-    }).
-    catch(function (error) {
-        return false
-    })
+    )
 }
 
 export const getAllUsers = () => {

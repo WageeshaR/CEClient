@@ -4,12 +4,14 @@ import Input from "./Input";
 import FormExtra from './FormExtra';
 import FormAction from './FormAction';
 import { authenticate } from '../api/apiHandler';
+import { useNavigate } from 'react-router-dom';
 
 const fields = loginFields;
 let fieldsState = {};
 fields.forEach(field => fieldsState[field.id] = '');
 
 export default function Login() {
+    const navigate = useNavigate();
     const [loginState, setLoginState] = useState(fieldsState);
 
     const handleChange = (e) => {
@@ -25,9 +27,13 @@ export default function Login() {
     const authenticateUser = async (e) => {
         const username = e.target["username"].value;
         const password = e.target["password"].value;
-        const result = await authenticate(username, password)
-        if (result) console.log("Successfully authenticated.")
-        else console.log("Auth failed.")
+        await authenticate(username, password)
+        .then(() => {
+            navigate("/home")
+        })
+        .catch(function (error) {
+            console.log("Auth failed: ".concat(error))
+        })
     }
 
     return(
