@@ -1,10 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Login from "../../components/Login";
 
 const LoginPage = () => {
-    const navigate = useNavigate();
     return (
     <>
         <Header
@@ -12,6 +10,7 @@ const LoginPage = () => {
             paragraph="Don't have an account yet? "
             linkName="Register"
             linkUrl="/register"
+            marginTop="mt-44"
         />
         <Login />
     </>

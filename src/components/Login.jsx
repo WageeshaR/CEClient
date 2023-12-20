@@ -3,30 +3,35 @@ import { loginFields } from "../constants/formFields";
 import Input from "./Input";
 import FormExtra from './FormExtra';
 import FormAction from './FormAction';
+import { authenticate } from '../api/apiHandler';
 
 const fields = loginFields;
 let fieldsState = {};
-fields.forEach(field=>fieldsState[field.id]='');
+fields.forEach(field => fieldsState[field.id] = '');
 
 export default function Login() {
-    const [loginState,setLoginState]=useState(fieldsState);
+    const [loginState, setLoginState] = useState(fieldsState);
 
-    const handleChange=(e)=>{
-        setLoginState({...loginState,[e.target.id]:e.target.value})
+    const handleChange = (e) => {
+        setLoginState({...loginState, [e.target.id]:e.target.value})
     }
 
-    const handleSubmit=(e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
-        authenticateUser();
+        authenticateUser(e);
     }
 
     //Handle Login API Integration here
-    const authenticateUser = () =>{
-        console.log("Hello from auth handler!")
+    const authenticateUser = async (e) => {
+        const username = e.target["username"].value;
+        const password = e.target["password"].value;
+        const result = await authenticate(username, password)
+        if (result) console.log("Successfully authenticated.")
+        else console.log("Auth failed.")
     }
 
     return(
-        <form className="mt-8 space-y-6 w-3/12 m-auto">
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6 w-3/12 m-auto">
             <div className="-space-y-px">
                 {
                     fields.map(field =>

@@ -5,7 +5,7 @@ import Header from "../../components/Header";
 const RegisterPage = () => {
     return (
         <>
-            <Header marginTop={10}/>
+            <Header marginTop="mt-16"/>
             <Register />
         </>
     )

@@ -15,7 +15,7 @@ export default function Input({
     customClass
 }){
     return(
-        <div class="flex items-center mb-4">
+        <div className="flex items-center mb-4">
             <input
               onChange={handleChange}
               value={value}
@@ -26,7 +26,7 @@ export default function Input({
               className={type != "checkbox" ? fixedInputClass+customClass : fixedCheckboxInputClass+customClass}
               placeholder={placeholder}
             />
-            <label for={labelFor} className={type != "checkbox" ? "sr-only" : fixedCheckboxLabelClass}>
+            <label htmlFor={labelFor} className={type != "checkbox" ? "sr-only" : fixedCheckboxLabelClass}>
               {labelText}
             </label>
           </div>

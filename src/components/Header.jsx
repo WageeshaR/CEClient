@@ -4,11 +4,11 @@ export default function Header({
     heading,
     paragraph,
     linkName,
-    linkUrl="#",
-    marginTop=52
+    marginTop,
+    linkUrl="#"
 }){
     return(
-        <div className={"mb-10 mt-" + marginTop}>
+        <div className={'mb-10 '.concat(marginTop)}>
             <div className="flex justify-center">
                 <img 
                     alt=""
