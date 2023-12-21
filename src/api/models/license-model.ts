@@ -29,22 +29,16 @@ export interface LicenseModel {
     id?: string;
 
     /**
-     * @type {number}
-     * @memberof LicenseModel
-     */
-    frequency: number;
-
-    /**
-     * @type {Price}
-     * @memberof LicenseModel
-     */
-    premium: Price;
-
-    /**
      * @type {string}
      * @memberof LicenseModel
      */
     licenseType: LicenseModelLicenseTypeEnum;
+
+    /**
+     * @type {number}
+     * @memberof LicenseModel
+     */
+    frequency: number;
 
     /**
      * @type {number}
@@ -57,6 +51,12 @@ export interface LicenseModel {
      * @memberof LicenseModel
      */
     unitCount?: number;
+
+    /**
+     * @type {Price}
+     * @memberof LicenseModel
+     */
+    premium: Price;
 }
 
 /**

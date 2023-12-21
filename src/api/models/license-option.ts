@@ -32,5 +32,5 @@ export interface LicenseOption {
      * @type {LicenseModel}
      * @memberof LicenseOption
      */
-    licenseModel: LicenseModel;
+    model: LicenseModel;
 }

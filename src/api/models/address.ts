@@ -32,24 +32,6 @@ export interface Address {
      * @type {string}
      * @memberof Address
      */
-    city: string;
-
-    /**
-     * @type {string}
-     * @memberof Address
-     */
-    county?: string;
-
-    /**
-     * @type {Country}
-     * @memberof Address
-     */
-    country: Country;
-
-    /**
-     * @type {string}
-     * @memberof Address
-     */
     line1: string;
 
     /**
@@ -62,5 +44,23 @@ export interface Address {
      * @type {string}
      * @memberof Address
      */
+    city: string;
+
+    /**
+     * @type {string}
+     * @memberof Address
+     */
     postalCode: string;
+
+    /**
+     * @type {string}
+     * @memberof Address
+     */
+    county?: string;
+
+    /**
+     * @type {Country}
+     * @memberof Address
+     */
+    country: Country;
 }

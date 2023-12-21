@@ -39,10 +39,4 @@ export interface Institution {
      * @memberof Institution
      */
     address?: Address;
-
-    /**
-     * @type {string}
-     * @memberof Institution
-     */
-    addressId?: string;
 }

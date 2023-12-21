@@ -14,6 +14,7 @@
 
 import { GrantedAuthority } from './granted-authority';
 import { Institution } from './institution';
+import { Profile } from './profile';
 import { Role } from './role';
 import { UserLicense } from './user-license';
 
@@ -47,7 +48,19 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    email: string | null;
+    firstName: string;
+
+    /**
+     * @type {string}
+     * @memberof User
+     */
+    lastName: string;
+
+    /**
+     * @type {string}
+     * @memberof User
+     */
+    email: string;
 
     /**
      * @type {string}
@@ -62,40 +75,22 @@ export interface User {
     roles?: Array<Role>;
 
     /**
-     * @type {UserLicense}
-     * @memberof User
-     */
-    license?: UserLicense;
-
-    /**
-     * @type {boolean}
-     * @memberof User
-     */
-    enabled?: boolean;
-
-    /**
-     * @type {Array<GrantedAuthority>}
-     * @memberof User
-     */
-    authorities?: Array<GrantedAuthority>;
-
-    /**
-     * @type {string}
-     * @memberof User
-     */
-    firstName: string | null;
-
-    /**
-     * @type {string}
-     * @memberof User
-     */
-    lastName: string | null;
-
-    /**
      * @type {Institution}
      * @memberof User
      */
     institution?: Institution;
+
+    /**
+     * @type {Profile}
+     * @memberof User
+     */
+    profile?: Profile;
+
+    /**
+     * @type {UserLicense}
+     * @memberof User
+     */
+    license?: UserLicense;
 
     /**
      * @type {boolean}
@@ -126,4 +121,16 @@ export interface User {
      * @memberof User
      */
     credentialsNonExpired?: boolean;
+
+    /**
+     * @type {boolean}
+     * @memberof User
+     */
+    enabled?: boolean;
+
+    /**
+     * @type {Array<GrantedAuthority>}
+     * @memberof User
+     */
+    authorities?: Array<GrantedAuthority>;
 }

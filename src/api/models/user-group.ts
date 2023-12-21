@@ -12,6 +12,7 @@
  * Do not edit the class manually.
  */
 
+import { User } from './user';
 
 /**
  * 
@@ -40,8 +41,8 @@ export interface UserGroup {
     role: string;
 
     /**
-     * @type {Array<string>}
+     * @type {Array<User>}
      * @memberof UserGroup
      */
-    userIds?: Array<string>;
+    users?: Array<User>;
 }

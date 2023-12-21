@@ -12,6 +12,9 @@
  * Do not edit the class manually.
  */
 
+import {
+    
+} from ".";
 
 /**
  * 
@@ -28,16 +31,16 @@ export interface Price {
     subject: string;
 
     /**
-     * @type {string}
-     * @memberof Price
-     */
-    currency?: PriceCurrencyEnum;
-
-    /**
      * @type {number}
      * @memberof Price
      */
     unitPrice: number;
+
+    /**
+     * @type {string}
+     * @memberof Price
+     */
+    currency?: PriceCurrencyEnum;
 }
 
 /**
