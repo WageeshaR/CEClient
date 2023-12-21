@@ -1,9 +1,16 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { authenticate } from "../../../api/apiHandler";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AUTH_TOKEN_HEADER } from "../../../constants/apiConstants";
+import { LoginControllerApi, User } from "../../../api";
 
 export const loginThunk: any = createAsyncThunk('auth/loginThunk', async (credentials: any) => {
-    const { data, headers }: any = await authenticate(credentials.username, credentials.password)
+    const user: User = {
+        "username": credentials.username,
+        "password": credentials.password,
+        "firstName": "",
+        "lastName": "",
+        "email": ""
+    }
+    const { data, headers }: any = await new LoginControllerApi().login(user)
     const token = headers.get(AUTH_TOKEN_HEADER)
     return { data, token }
 })
