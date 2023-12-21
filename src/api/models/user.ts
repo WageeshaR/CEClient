@@ -16,9 +16,6 @@ import { GrantedAuthority } from './granted-authority';
 import { Institution } from './institution';
 import { Role } from './role';
 import { UserLicense } from './user-license';
-import {
-    GrantedAuthority,Institution,Role,UserLicense,
-} from ".";
 
 /**
  * 
@@ -50,7 +47,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    email: string;
+    email: string | null;
 
     /**
      * @type {string}
@@ -86,13 +83,13 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    firstName: string;
+    firstName: string | null;
 
     /**
      * @type {string}
      * @memberof User
      */
-    lastName: string;
+    lastName: string | null;
 
     /**
      * @type {Institution}

@@ -1,14 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AUTH_TOKEN_HEADER } from "../../../constants/apiConstants";
-import { LoginControllerApi, User } from "../../../api";
+import { LoginControllerApi } from "../../../api";
+import { User } from "../../../api/models/user";
 
 export const loginThunk: any = createAsyncThunk('auth/loginThunk', async (credentials: any) => {
     const user: User = {
         "username": credentials.username,
         "password": credentials.password,
-        "firstName": "",
-        "lastName": "",
-        "email": ""
+        "firstName": null, "lastName": null, "email": null
     }
     const { data, headers }: any = await new LoginControllerApi().login(user)
     const token = headers.get(AUTH_TOKEN_HEADER)

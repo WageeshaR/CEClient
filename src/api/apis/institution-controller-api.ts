@@ -17,7 +17,7 @@ import { Configuration } from '../configuration';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } from '../base';
-import { Institution } from '../models';
+import { Institution } from '../models/institution';
 /**
  * InstitutionControllerApi - axios parameter creator
  * @export

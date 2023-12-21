@@ -13,9 +13,6 @@
  */
 
 import { LicenseModel } from './license-model';
-import {
-    LicenseModel,
-} from ".";
 
 /**
  * 
