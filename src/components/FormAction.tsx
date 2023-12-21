@@ -1,9 +1,13 @@
 export default function FormAction({
-    handleSubmit,
-    type='Button',
-    action='submit',
-    text
-}){
+        type,
+        action,
+        text
+    }:{
+        type: string,
+        action: any,
+        text: string
+    }
+){
     return(
         <>
         {

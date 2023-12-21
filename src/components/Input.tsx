@@ -10,10 +10,22 @@ export default function Input({
     id,
     name,
     type,
-    isRequired=false,
+    isRequired = false,
     placeholder,
     customClass
-}){
+  }:{
+    handleChange: any,
+    value: any,
+    labelText: string,
+    labelFor: string,
+    id: string,
+    name: string,
+    type: string,
+    isRequired: boolean,
+    placeholder: string,
+    customClass: any
+  }
+){
     return(
         <div className="flex items-center mb-4">
             <input

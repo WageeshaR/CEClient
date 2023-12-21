@@ -3,24 +3,24 @@ import { signupFields } from "../constants/formFields"
 import FormAction from "./FormAction";
 import Input from "./Input";
 
-const fields=signupFields;
-let fieldsState={};
+const fields: any = signupFields;
+let fieldsState: any = {};
 
-fields.forEach(field => fieldsState[field.id]='');
+fields.forEach((field: any) => fieldsState[field.id] = '');
 
 export default function Register() {
-  const [signupState,setSignupState]=useState(fieldsState);
+  const [signupState,setSignupState] = useState(fieldsState);
 
-  const handleChange=(e)=>setSignupState({...signupState,[e.target.id]:e.target.value});
+  const handleChange = (e: any) => setSignupState({...signupState, [e.target.id]:e.target.value});
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log(signupState)
     createAccount()
   }
 
   //handle Signup API Integration here
-  const createAccount=()=>{
+  const createAccount = () => {
 
   }
 
@@ -28,7 +28,7 @@ export default function Register() {
         <form className="mt-8 space-y-6 w-3/12 m-auto" onSubmit={handleSubmit}>
             <div className="">
             {
-                    fields.map(field=>
+                    fields.map((field: any) =>
                             <Input
                                 key={field.id}
                                 handleChange={handleChange}
@@ -40,11 +40,12 @@ export default function Register() {
                                 type={field.type}
                                 isRequired={field.isRequired}
                                 placeholder={field.placeholder}
+                                customClass={null}
                         />
                     
                     )
                 }
-            <FormAction handleSubmit={handleSubmit} text="Sign up" />
+            <FormAction type='Button' action='submit' text="Sign up" />
             </div>
         </form>
     )

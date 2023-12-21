@@ -21,11 +21,11 @@ const router = createBrowserRouter([
     element: <LoginPage />,
     errorElement: <ErrorPage />,
   },
-  // {
-  //   path: "/register",
-  //   element: <RegisterPage />,
-  //   errorElement: <ErrorPage />,
-  // },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+    errorElement: <ErrorPage />,
+  },
   {
     path: "/home",
     element: <Home />,

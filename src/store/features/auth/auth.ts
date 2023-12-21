@@ -1,9 +1,9 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { authenticate } from "../../../api/apiHandler";
 import { AUTH_TOKEN_HEADER } from "../../../constants/apiConstants";
 
-export const loginThunk = createAsyncThunk('auth/loginThunk', async (credentials) => {
-    const { data, headers } = await authenticate(credentials.username, credentials.password)
+export const loginThunk: any = createAsyncThunk('auth/loginThunk', async (credentials: any) => {
+    const { data, headers }: any = await authenticate(credentials.username, credentials.password)
     const token = headers.get(AUTH_TOKEN_HEADER)
     return { data, token }
 })
@@ -19,8 +19,8 @@ export const authSlice = createSlice({
         error: null
     },
     reducers: {
-        logoutReducer: state => state.token = "",
-        signUpReducer: (state, action) => {}
+        logoutReducer: (state: any) => { state.token = "" },
+        signUpReducer: () => {}
     },
     extraReducers(builder) {
         builder
@@ -39,6 +39,6 @@ export const authSlice = createSlice({
     }
 })
 
-export const { loginReducer, logoutReducer, signUpReducer } = authSlice.actions
+export const { logoutReducer, signUpReducer } = authSlice.actions
 export default authSlice.reducer
-export const selectToken = state => state.auth.data.token
+export const selectToken = (state: any) => state.auth.data.token

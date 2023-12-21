@@ -1,4 +1,3 @@
-import { data } from 'autoprefixer';
 import axios from 'axios';
 
 const baseUrl = "http://localhost:8080";
@@ -8,7 +7,7 @@ const headers = {
     'Accept': '*/*'
   }
 
-export const authenticate = async (username, password) => {
+export const authenticate = async (username: string, password: string) => {
     return axios.post(
         baseUrl + "/login",
         JSON.stringify({
@@ -19,7 +18,7 @@ export const authenticate = async (username, password) => {
     )
 }
 
-export const getAllUsers = async (token) => {
+export const getAllUsers = async (token: string) => {
     return axios.get(
         baseUrl + "/users",
         { headers: {...headers, 'Authorization': token } }
