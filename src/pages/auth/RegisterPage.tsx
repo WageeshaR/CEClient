@@ -2,12 +2,13 @@ import Register from "../../components/Register";
 import Header from "../../components/Header";
 import RegStepComponent from "../../components/RegStepComponent";
 import { NAryNode, nAryTree } from "../../constants/registrationStepsChain";
-import { useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { User } from "../../api/models";
 import { useDispatch, useSelector } from "react-redux";
 import { registerStudentThunk, selectStatus, statusReducer } from "../../store/features/auth/auth";
 import { ReducerState } from "../../store/types";
 import { useNavigate } from "react-router-dom";
+import * as _ from "lodash";
 
 const RegisterPage = () => {
     const [regStepKey, setKey] = useState("")
@@ -15,7 +16,7 @@ const RegisterPage = () => {
     const dispatch = useDispatch()
     const authStatus: ReducerState = useSelector(selectStatus);
     const navigate = useNavigate();
-    const user = useRef({
+    const user: MutableRefObject<User> = useRef({
         username: "",
         password: "",
         firstName: "",
@@ -33,7 +34,7 @@ const RegisterPage = () => {
     useEffect(() => {
         let child: NAryNode | null = ["", "init"].includes(regStepKey) ? null : step.children[0]
         while (! child?.data.index.some(d => d == regStepKey || d == "any") && child != null) {
-            child = child?.children.length == 1 ? child.children[0] : null
+            child = child.children[0]
         }
         if (child) {
             setStep(child)
@@ -43,7 +44,7 @@ const RegisterPage = () => {
     }, [regStepKey])
 
     const updateUser = (o: any) => {
-        user.current = {...user.current, ...o}
+        _.merge(user.current, o)
     }
 
     function stepKeyHandler(e: string) {

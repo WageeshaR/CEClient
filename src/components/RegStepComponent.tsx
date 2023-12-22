@@ -5,7 +5,7 @@ export default function RegStepComponent (
 ) {
     function clickHandler(e: string) {
         userUpdater({
-            [step.data.key]: e
+            profile: {[step.data.key]: e}
         })
         keyHandler(e)
     }
