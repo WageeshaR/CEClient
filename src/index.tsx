@@ -7,7 +7,7 @@ import ErrorPage from './pages/util/Error.tsx';
 import LoginPage from './pages/auth/LoginPage.tsx';
 import RegisterPage from './pages/auth/RegisterPage.tsx';
 import { Provider } from 'react-redux';
-import store from './store/store.ts';
+import {store} from './store/store.ts';
 import Home from './pages/Home.tsx';
 
 const router = createBrowserRouter([

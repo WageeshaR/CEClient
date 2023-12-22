@@ -62,7 +62,7 @@ const signupFields = [
         id: "institution",
         name: "institution",
         type: "text",
-        isRequired: true,
+        isRequired: false,
         placeholder: "Institution"   
     },
     {

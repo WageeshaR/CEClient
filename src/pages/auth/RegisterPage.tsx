@@ -9,7 +9,7 @@ const RegisterPage = () => {
                 paragraph="With one account you can benefit from 100% of CollabEd features."
                 linkName=""
                 linkUrl=""
-                marginTop="mt-16"
+                marginTop="mt-8"
             />
             <Register />
         </>
