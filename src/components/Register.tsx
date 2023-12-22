@@ -3,7 +3,7 @@ import { signupFields } from "../constants/formFields"
 import FormAction from "./FormAction";
 import Input from "./Input";
 import { useDispatch, useSelector } from 'react-redux';
-import { registerStudentThunk, selectStatus, statusReducer } from '../store/features/auth/auth';
+import { regStepReducer, registerStudentThunk, selectStatus, statusReducer } from '../store/features/auth/auth';
 import { useNavigate } from 'react-router-dom';
 import { ReducerState } from '../store/types';
 
@@ -12,7 +12,7 @@ let fieldsState: any = {};
 
 fields.forEach((field: any) => fieldsState[field.id] = '');
 
-export default function Register() {
+export default function Register({ keyHandler }: { keyHandler: any }) {
   const [signupState, setSignupState] = useState(fieldsState);
   const dispatch = useDispatch();
   const authStatus: ReducerState = useSelector(selectStatus);
@@ -51,7 +51,8 @@ export default function Register() {
             user[value[0]] = value[1];
         }
     });
-    dispatch(registerStudentThunk(user))
+    keyHandler("init")
+    // dispatch(regStepReducer("init"))
   }
 
     return(
@@ -74,7 +75,7 @@ export default function Register() {
                     />
                 )
             }
-            <FormAction type='Button' action='submit' text="Sign up" />
+            <FormAction type='Button' action='submit' text="Continue" />
             </div>
         </form>
     )
