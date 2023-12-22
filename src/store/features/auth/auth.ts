@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AUTH_TOKEN_HEADER } from "../../../constants/apiConstants";
 import { LoginControllerApi, RegistrationControllerApi } from "../../../api";
 import { User } from "../../../api/models/user";
+import { ReducerState } from "../../types";
 
 export const loginThunk: any = createAsyncThunk('auth/loginThunk', async (credentials: any) => {
     const user: User = {
@@ -26,41 +27,51 @@ export const authSlice = createSlice({
             token: "",
             user: {}
         },
-        status: 'idle',
+        status: ReducerState.IDLE,
         error: null
     },
     reducers: {
+        statusReducer: (state: any, action: { payload: ReducerState }) => { 
+            switch (action.payload) {
+                case ReducerState.IDLE:
+                    state.status = ReducerState.IDLE
+                    state.error = null
+                    break
+            }
+        },
         logoutReducer: (state: any) => { state.data.token = "" },
         signUpReducer: () => {}
     },
     extraReducers(builder) {
         builder
             .addCase(loginThunk.pending, (state) => {
-                state.status = 'pending'
+                state.status = ReducerState.PENDING
             })
             .addCase(loginThunk.fulfilled, (state, action) => {
-                state.status = 'fulfilled'
+                state.status = ReducerState.FULFILLED
                 state.data.token = action.payload.token
             })
             .addCase(loginThunk.rejected, (state, action) => {
-                state.status = 'rejected'
+                state.status = ReducerState.REJECTED
                 state.error = action.error.message
             })
             .addCase(registerStudentThunk.pending, (state) => {
-                state.status = 'pending'
+                state.status = ReducerState.PENDING
             })
             .addCase(registerStudentThunk.fulfilled, (state, action) => {
-                state.status = 'fulfilled'
+                state.status = ReducerState.FULFILLED
                 state.data.user = action.payload
             })
             .addCase(registerStudentThunk.rejected, (state, action) => {
-                state.status = 'rejected'
+                state.status = ReducerState.REJECTED
                 state.error = action.error.message
             })
     }
 })
 
-export const { logoutReducer, signUpReducer } = authSlice.actions
+export const { logoutReducer, signUpReducer, statusReducer } = authSlice.actions
 export default authSlice.reducer
 export const selectToken = (state: any) => state.auth.data.token
+export const selectStatus = (state: any) => state.auth.status
+export const selectError = (state: any) => state.auth.error
 export const selectUser = (state: any) => state.auth.data.user

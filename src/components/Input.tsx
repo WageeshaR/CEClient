@@ -29,6 +29,7 @@ export default function Input({
     return(
         <div className="flex items-center mb-4">
             <input
+              onClick={handleChange}
               onChange={handleChange}
               value={value}
               id={id}
