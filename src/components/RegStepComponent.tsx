@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react"
-import { NAryNode, RegistrationStep } from "../constants/registrationStepsChain"
+import { NAryNode } from "../constants/registrationStepsChain"
 
-export default function RegStepComponent ({ step, keyHandler }:{ step: NAryNode, keyHandler: any }) {
-    useEffect(() => {
-        console.log("Rendered")
-    }, [step])
+export default function RegStepComponent (
+    { step, keyHandler, userUpdater }:{ step: NAryNode, keyHandler: any, userUpdater: any }
+) {
+    function clickHandler(e: string) {
+        userUpdater({
+            [step.data.key]: e
+        })
+        keyHandler(e)
+    }
 
     return(
         <div key={step.data.key} className={'mb-10 mt-20'}>
@@ -17,7 +21,7 @@ export default function RegStepComponent ({ step, keyHandler }:{ step: NAryNode,
             <br/>
             {step.data.values.map(v => {
                 return (
-                    <button key={v.length} onClick={(e: any) => keyHandler(e.target.value)} value={v}>
+                    <button key={v.length} onClick={(e: any) => clickHandler(e.target.value)} value={v}>
                         {v}
                     </button>
                 )

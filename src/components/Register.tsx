@@ -3,56 +3,43 @@ import { signupFields } from "../constants/formFields"
 import FormAction from "./FormAction";
 import Input from "./Input";
 import { useDispatch, useSelector } from 'react-redux';
-import { regStepReducer, registerStudentThunk, selectStatus, statusReducer } from '../store/features/auth/auth';
+import { selectStatus, statusReducer } from '../store/features/auth/auth';
 import { useNavigate } from 'react-router-dom';
 import { ReducerState } from '../store/types';
+import { User } from '../api/models';
 
 const fields: any = signupFields;
 let fieldsState: any = {};
 
 fields.forEach((field: any) => fieldsState[field.id] = '');
 
-export default function Register({ keyHandler }: { keyHandler: any }) {
+export default function Register({ keyHandler, userUpdater }: { keyHandler: any, userUpdater: any }) {
   const [signupState, setSignupState] = useState(fieldsState);
-  const dispatch = useDispatch();
-  const authStatus: ReducerState = useSelector(selectStatus);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (authStatus == ReducerState.FULFILLED) {
-        dispatch(statusReducer(ReducerState.IDLE))
-        navigate("/login")
-    }
-  }, [authStatus])
 
   const handleChange = (e: any) => {
     setSignupState({
         ...signupState,
-        [e.target.id]: e.target.type != 'checkbox' ? e.target.value : e.target.checked}
-    )
+        [e.target.id]: e.target.type != 'checkbox' ? e.target.value : e.target.checked
+    })
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log(signupState)
-    createAccount(e)
-  }
-
-  //handle Signup API Integration here
-  const createAccount = (e: any) => {
     let user: any = {}
     const userData = [...new FormData(e.target).entries()]
     userData.forEach(function(value: any){
-        if (value[0] == 'institution') {
-            user[value[0]] = {
-                id: value[1]
+        const key: keyof User = value[0]
+        if (key == 'institution') {
+            user[key] = {
+                id: value[1],
+                name: ""
             }
         } else {
-            user[value[0]] = value[1];
+            user[key] = value[1] as never;
         }
     });
+    userUpdater(user)
     keyHandler("init")
-    // dispatch(regStepReducer("init"))
   }
 
     return(

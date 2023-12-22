@@ -2,20 +2,49 @@ import Register from "../../components/Register";
 import Header from "../../components/Header";
 import RegStepComponent from "../../components/RegStepComponent";
 import { NAryNode, nAryTree } from "../../constants/registrationStepsChain";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { User } from "../../api/models";
+import { useDispatch, useSelector } from "react-redux";
+import { registerStudentThunk, selectStatus, statusReducer } from "../../store/features/auth/auth";
+import { ReducerState } from "../../store/types";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
     const [regStepKey, setKey] = useState("")
     const [step, setStep] = useState(nAryTree.root)
+    const dispatch = useDispatch()
+    const authStatus: ReducerState = useSelector(selectStatus);
+    const navigate = useNavigate();
+    const user = useRef({
+        username: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        email: ""
+    })
 
     useEffect(() => {
-        step.children.forEach((c: NAryNode) => {
-            if (c.data.key == regStepKey) {
-                setStep(c)
-                return
-            }
-        })
+        if (authStatus == ReducerState.FULFILLED) {
+            dispatch(statusReducer(ReducerState.IDLE))
+            navigate("/login")
+        }
+    }, [authStatus])
+
+    useEffect(() => {
+        let child: NAryNode | null = ["", "init"].includes(regStepKey) ? null : step.children[0]
+        while (! child?.data.index.some(d => d == regStepKey || d == "any") && child != null) {
+            child = child?.children.length == 1 ? child.children[0] : null
+        }
+        if (child) {
+            setStep(child)
+        } else if (! step.data.index.includes("init")) {
+            dispatch(registerStudentThunk(user.current))
+        }
     }, [regStepKey])
+
+    const updateUser = (o: any) => {
+        user.current = {...user.current, ...o}
+    }
 
     function stepKeyHandler(e: string) {
         setKey(e)
@@ -31,12 +60,12 @@ const RegisterPage = () => {
                 linkUrl=""
                 marginTop="mt-8"
             />
-            <Register keyHandler={stepKeyHandler} />
+            <Register userUpdater={updateUser} keyHandler={stepKeyHandler} />
         </>
         )
     }
     else return (
-        <RegStepComponent keyHandler={stepKeyHandler} step={step}/>
+        <RegStepComponent userUpdater={updateUser} keyHandler={stepKeyHandler} step={step}/>
     )
 }
 

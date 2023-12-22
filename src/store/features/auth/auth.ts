@@ -26,7 +26,6 @@ export const authSlice = createSlice({
         data: {
             token: "",
             user: {},
-            regStepKey: ""
         },
         status: ReducerState.IDLE,
         error: null
@@ -40,10 +39,7 @@ export const authSlice = createSlice({
                     break
             }
         },
-        logoutReducer: (state: any) => { state.data.token = "" },
-        regStepReducer: (state: any, action: { payload: string }) => {
-            state.data.regStepKey = action.payload
-        }
+        logoutReducer: (state: any) => { state.data.token = "" }
     },
     extraReducers(builder) {
         builder
@@ -72,7 +68,7 @@ export const authSlice = createSlice({
     }
 })
 
-export const { logoutReducer, regStepReducer, statusReducer } = authSlice.actions
+export const { logoutReducer, statusReducer } = authSlice.actions
 export default authSlice.reducer
 export const selectToken = (state: any) => state.auth.data.token
 export const selectStatus = (state: any) => state.auth.status

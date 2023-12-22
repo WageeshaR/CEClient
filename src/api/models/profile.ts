@@ -29,6 +29,12 @@ export interface Profile {
     id?: string;
 
     /**
+     * @type {boolean}
+     * @memberof Profile
+     */
+    isStudying?: boolean;
+
+    /**
      * @type {string}
      * @memberof Profile
      */
