@@ -12,9 +12,21 @@ export default {
     colors: {
       ...colors,
       'primary-light': '#38BDF9',
+      'primary-light-hover': '#43C3FA',
       'primary-dark': '#0E1729',
+      'primary-dark-hover': '#0E1729',
     },
-    extend: {},
+    extend: {
+      keyframes: {
+        wiggle: {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(1000px)" }
+        }
+      },
+      animation: {
+        wiggle: "wiggle 1000ms ease-in-out"
+      }
+    }
   },
   plugins: [],
 }
