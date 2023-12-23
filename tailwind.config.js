@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors')
 export default {
   content: [
     "./index.html",
@@ -6,7 +7,12 @@ export default {
   ],
   theme: {
     fontFamily: {
-      'sans': ['Open Sans'],
+      'sans': ['Roboto', 'sans-serif']
+    },
+    colors: {
+      ...colors,
+      'primary-light': '#38BDF9',
+      'primary-dark': '#0E1729',
     },
     extend: {},
   },
