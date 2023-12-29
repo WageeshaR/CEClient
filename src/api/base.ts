@@ -17,7 +17,9 @@ import { Configuration } from "./configuration";
 // @ts-ignore
 import globalAxios, { AxiosRequestConfig, AxiosInstance } from 'axios';
 
-export const BASE_PATH = "http://localhost:8080".replace(/\/+$/, "");
+const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8080"
+
+export const BASE_PATH = API_URL.replace(/\/+$/, "");
 
 /**
  *
