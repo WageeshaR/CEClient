@@ -39,7 +39,7 @@ export default function Register({ keyHandler, userUpdater }: { keyHandler: any,
         }
     });
     userUpdater(user)
-    keyHandler("init")
+    keyHandler("prompt")
   }
 
     return(
@@ -56,7 +56,7 @@ export default function Register({ keyHandler, userUpdater }: { keyHandler: any,
                         id={field.id}
                         name={field.name}
                         type={field.type}
-                        isRequired={field.isRequired}
+                        isRequired={false}
                         placeholder={field.placeholder}
                         customClass={null}
                     />

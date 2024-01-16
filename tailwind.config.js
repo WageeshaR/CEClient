@@ -14,7 +14,7 @@ export default {
       'primary-light': '#38BDF9',
       'primary-light-hover': '#43C3FA',
       'primary-dark': '#0E1729',
-      'primary-dark-hover': '#0E1729',
+      'primary-dark-hover': '#221E2D',
     },
     extend: {
       keyframes: {

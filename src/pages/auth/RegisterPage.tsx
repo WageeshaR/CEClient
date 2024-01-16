@@ -9,6 +9,7 @@ import { registerStudentThunk, selectStatus, statusReducer } from "../../store/f
 import { ReducerState } from "../../store/types";
 import { useNavigate } from "react-router-dom";
 import * as _ from "lodash";
+import { PostRegPrompt } from "../../components/PostRegisterPrompt";
 
 const RegisterPage = () => {
     const [regStepKey, setKey] = useState("")
@@ -32,6 +33,8 @@ const RegisterPage = () => {
     }, [authStatus])
 
     useEffect(() => {
+        if (regStepKey == "prompt") return
+
         let child: NAryNode | null = ["", "init"].includes(regStepKey) ? null : step.children[0]
         while (! child?.data.index.some(d => d == regStepKey || d == "any") && child != null) {
             child = child.children[0]
@@ -65,9 +68,13 @@ const RegisterPage = () => {
         </>
         )
     }
-    else return (
-        <RegStepComponent userUpdater={updateUser} keyHandler={stepKeyHandler} step={step}/>
-    )
+    else if (regStepKey == "prompt") {
+        return (
+            <PostRegPrompt keyHandler={stepKeyHandler}/>
+        )
+    } else {
+        return <RegStepComponent userUpdater={updateUser} keyHandler={stepKeyHandler} step={step}/>
+    }
 }
 
 export default RegisterPage;
